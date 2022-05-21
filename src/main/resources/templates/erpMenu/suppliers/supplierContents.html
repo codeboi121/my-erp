@@ -1,0 +1,36 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Sales contents</title>		
+		
+		<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+		
+	</head>
+	<body >
+		<h6>
+			<a th:href="@{/suppliers/showFormForAdd}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Add Supplier</a>
+		</h6>
+		
+		<br>
+		
+		<h6>
+			<a th:href="@{/suppliers/list}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Supplier List</a>
+		</h6>
+		
+		<br>
+		
+		<h6>
+			<a th:href="@{/suppliers/ledger}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Supplier Ledger</a>
+		</h6>
+		
+		<br>
+		
+		<h6>
+			<a th:href="@{/suppliers/advance}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Supplier Advance</a>
+		</h6>
+	</body>
+</html>

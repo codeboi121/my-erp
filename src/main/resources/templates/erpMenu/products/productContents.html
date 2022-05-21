@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Sales contents</title>		
+		
+		<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+		
+	</head>
+	<body >
+		<a th:href="@{/categories/showFormForAdd}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Add Category</a>
+		<br>
+		<a th:href="@{/categories/list}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Category List</a>
+		<br>
+		<a th:href="@{/units/showFormForAdd}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Add Unit</a>
+		<br>
+		<a th:href="@{/units/list}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Unit List</a>
+		<br>
+		<a th:href="@{/products/showFormForAdd}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Add Product</a>
+		<br>
+		<a th:href="@{/products/showFormForAddCsv}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Add Product Csv</a>
+		<br>
+		<a th:href="@{/products/list}" class="btn btn-primary btn-sm mr-5 mb-3 mt-3">Manage Product</a>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>New Sale</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>Sale Directory</h3>
+		<hr>
+		
+		<p class="h4 mb-4">New Sale</p>
+		<table class="table table-bordered table-striped">
+			<tbody>
+				<tr>
+					<td>
+						<a th:href="@{/sales/list}" class="btn btn-primary btn-sm ml-5 mr-sm-2 mb-3">≡manage sale</a>
+						<a th:href="@{/sales/pos}" class="btn btn-primary btn-sm ml-5 mr-sm-2 mb-3">≡POS Sale</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+		
+		
+	
+		<form th:action="@{/sales/save}"
+			  th:object="${sale}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			
+			<table class="table table-bordered table-striped">
+				<tbody>
+					<tr>
+						<td><label for="Customer Name/Phone *">Customer Name/Phone</label><label style="color: red">*</label> </td>
+						<td><input type="text" th:field="*{customerName}"
+								class="form-control mb-4 col-4" placeholder="Enter Customer Name or Mobile No.">
+								<a th:href="@{/customers/showFormForAddSmall}" class="btn btn-primary btn-sm ml-5 mr-sm-2 mb-3">
+									+
+								</a>		
+						</td>
+						<td><label for="Payment Type *">Payment Type</label><label style="color: red">*</label> </td>
+						<td><input type="text" placeholder="payment" disabled></td>
+					</tr>
+					
+					<tr>
+						<td><label for="Date *">Date</label><label style="color: red">*</label> </td>
+						<td><input type="date" th:field="*{date}"
+								class="form-control mb-4 col-4" /></td>
+						<td><label for="Invoice No *">Invoice No</label><label style="color: red">*</label> </td>
+						<td><input type="text" th:field="*{invoiceNo}" readonly
+								class="form-control mb-4 col-4" ></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<input type="hidden" th:field="*{saleBy}">
+
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/sales/list}">Back to Sales List</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

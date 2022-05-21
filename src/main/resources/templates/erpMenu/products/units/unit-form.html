@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>New Unit</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<hr>
+		
+		<p class="h4 mb-4">New Unit</p>
+		<table class="table table-bordered table-striped">
+			<tbody>
+				<tr>
+					<td>
+						<a th:href="@{/units/pos}" class="btn btn-primary btn-sm ml-5 mr-sm-2 mb-3">≡POS Sale</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	
+		<form th:action="@{/units/save}"
+			  th:object="${unit}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			
+			<table class="table table-bordered table-striped">
+				<tbody>
+					<tr>
+						<td>
+								<label>Unit Name</label><label style="color: red">*</label>:
+							<input type="text" th:field="*{unitName}"
+								class="form-control mb-4 col-4" placeholder="Unit Name">
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<label>status</label><label style="color: red">*</label>: 
+							<select th:field="*{status}">
+								<option th:value="inactive" th:text="inactive"/>
+								<option th:value="active" th:text="active">
+							</select>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/units/list}">Back to Units List</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

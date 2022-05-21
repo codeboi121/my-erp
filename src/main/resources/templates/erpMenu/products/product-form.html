@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save Product</title>
+	
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>Product Directory</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save Product</p>
+	
+		<form th:action="@{/products/save}"
+			  th:object="${product}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<table class="table table-bordered table-striped">
+				<tbody>
+					<tr>
+						<td>
+							<label>Barcode/QR-code</label>
+							<input type="text" 
+								class="form-control mb-4 col-4" placeholder="Barcode/QR-code">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped">
+				<tbody>
+					<tr>
+						<td>
+							<label>Product Name</label><label style="color: red">*</label>:
+							<input type="text" th:field="*{productName}"
+								class="form-control mb-4 col-4" placeholder="Product Name">
+						</td>
+						<td>
+							<label>SN:</label><input type="text" 
+								class="form-control mb-4 col-4" placeholder="111,abc,XYz">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Model</label><label style="color: red">*</label>:
+							<input type="text" th:field="*{productModel}"
+								class="form-control mb-4 col-4" placeholder="Email">
+						</td>
+						<td>
+							<label>Category:</label><label style="color: red">*</label>:
+							<select th:field="*{category}">
+								<option value="0">select option</option>
+								<option th:each="category:${categories}"
+										th:value="${category.categoryName}" th:text="${category.categoryName}"/>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Sale Price</label><label style="color: red">*</label>:
+							<input type="text" th:field="*{price}"
+								class="form-control mb-4 col-4" placeholder="0.00">
+						</td>
+						<td>
+							<label>Unit:</label>
+							<select th:field="*{unit}">
+								<option value="0"> select option</option>
+								<option th:each="unit:${units}"
+										th:value="unit.unitName" th:text="${unit.unitName}"/>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Image:</label>
+							<input type="file" >
+						</td>
+						<td>
+							<label>VAT</label><input type="text" 
+							class="form-control mb-4 col-4" placeholder="State"><label>%</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>IGT</label><input type="text" 
+							class="form-control mb-4 col-4" placeholder="State"><label>%</label>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-striped" id="productTbl">
+					<tr>
+						<th><label>Supplier</label><label style="color: red">*</label> </th>
+						<th><label>Supplier Price</label><label style="color: red">*</label> </th>	
+<!-- 						<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')"> -->
+<!-- 							<th>Action</th> -->
+<!-- 						</div>	 -->
+						<th>
+							<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+								Action
+							</div>
+						</th>
+					</tr>
+					<tr>
+						<td id="col0">
+							<select >
+								<option value="0">Select option</option>
+								<option th:each="supplier:${suppliers}"
+										th:value="${supplier.supplierName}" th:text="${supplier.supplierName}"></option>
+							</select>							
+						</td>
+						<td id="col1">
+							<input type="text" th:field="*{supplierPrice}"
+								class="form-control mb-4 col-4" placeholder="0.00">
+						</td>
+<!-- 						<div sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')"> -->
+<!-- 							<td id="col3"> -->
+<!-- 								<input type="button" onclick="addRows()" value="+"/> -->
+<!-- 								<input type="button" onclick="deleteRow()" value="🗑️"/> -->
+<!-- 							</td> -->
+<!-- 						</div> -->
+						<td id="col2">
+							<div sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')">
+								<input type="button" onclick="addRows()" value="+" class="btn btn-info col-2"/>
+								<input type="button" onclick="deleteRows()" value="🗑️" class="btn btn-danger col-2"/>
+							</div>
+						</td>
+					</tr>
+			</table>
+			<table class="table table-bordered table-striped">
+				<tbody>
+					<tr>
+						<td>
+							<label>product details</label>
+							<input type="text" th:field="*{productDetails}"
+								class="form-control mb-4 col-4" placeholder="Product details">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<button type="submit" class="btn btn-info col-2">Save</button>
+			
+			<script type="text/javascript">
+				function addRows(){
+// 					var table=document.getElementById('productTbl');
+// 					var rowCount=table.rows.length;
+// 					for(var i=0;i<=table.rows[0].cells.length;i++){
+// 						var cell=table.insertRow(rowCount).insertCell(i);
+// 						cell.innerHTML=document.getElementById('col'+i).innerHTML;
+// 					}
+					var table = document.getElementById('productTbl');
+					var rowCount = table.rows.length;
+					var cellCount = table.rows[0].cells.length; 
+					var row = table.insertRow(rowCount);
+					for(var i =0; i < cellCount; i++){
+						var cell = row.insertCell(i);
+						var copycel = document.getElementById('col'+i).innerHTML;
+						cell.innerHTML=copycel;
+					}
+				}
+				
+				function deleteRows(){
+					var table = document.getElementById('productTbl');
+					var rowCount = table.rows.length;
+					if(rowCount > 2){
+						var row = table.deleteRow(rowCount-1);
+						rowCount--;
+					}
+					else{
+						alert('There should be atleast one row');
+					}
+				}
+			</script>
+		</form>
+	
+		<hr>
+		<a th:href="@{/products/list}">Back to products List</a>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+</body>
+
+</html>
+
+
+
