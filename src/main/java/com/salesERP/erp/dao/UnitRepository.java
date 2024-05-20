@@ -12,7 +12,7 @@ public interface UnitRepository extends JpaRepository<Unit, Integer> {
 	// search by name
 	List<Unit> findByUnitNameContainsAllIgnoreCase(String theName);
 
-	// that's it ... no need to write any code LOL!
+	
 	
 }
  
