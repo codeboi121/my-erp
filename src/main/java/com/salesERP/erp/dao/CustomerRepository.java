@@ -10,7 +10,7 @@ import com.salesERP.erp.entity.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-	// that's it ... no need to write any code LOL!
+	
 	
 	// add a method to sort by last name
 //	public List<Customer> findAll();
